@@ -1,161 +1,1033 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Harish Kumar M - Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harish Kumar M | QA Executive Leadership</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --success: #10b981;
+            --text: #334155;
+            --text-light: #64748b;
+            --header-dark: #0f172a;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Navigation */
+        .header-nav {
+            background-color: var(--header-dark);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-size: 200% 200%;
+            animation: gradientBG 12s ease infinite;
+            color: white;
+            padding: 7rem 0 3rem;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            background-size: cover;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin: 1rem auto;
+            max-width: 800px;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .download-cv {
+            background-color: var(--accent);
+            font-weight: 600;
+        }
+
+        .download-cv:hover {
+            background-color: #e67e22;
+        }
+
+        section {
+            margin: 3rem 0;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .summary {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .summary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .role-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--accent);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        details {
+            background: white;
+            margin-bottom: 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        summary {
+            padding: 1.5rem;
+            background: linear-gradient(90deg, var(--light), white);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1rem;
+            position: relative;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.25rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        details[open] summary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        details[open] summary::after {
+            content: '-';
+            color: white;
+            transform: translateY(-50%) rotate(0deg);
+        }
+
+        .experience-content {
+            padding: 1.5rem;
+        }
+
+        .experience-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-section h4 {
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .experience-section h4 i {
+            color: var(--accent);
+        }
+
+        .experience-section ul {
+            margin-top: 0.5rem;
+            padding-left: 1.25rem;
+        }
+
+        .experience-section li {
+            margin-bottom: 0.6rem;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .experience-section li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Skills & Tools Section */
+        .skills-tools {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category {
+            background-color: #f8fafc;
+            border-radius: 10px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h4 {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category h4 i {
+            color: var(--primary);
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-category li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .skill-category li i {
+            color: var(--success);
+            font-size: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2.5rem 0;
+            background: linear-gradient(135deg, var(--dark), #0f172a);
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+                gap: 1rem;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .role-highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 6rem 0 2.5rem;
+                margin-top: 56px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .contact-item {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .summary, .highlight-card, .skill-category {
+                padding: 1.25rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .role-highlights, .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-bar {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .contact-item {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            header {
+                padding: 5rem 0 2rem;
+                border-radius: 0;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .summary p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                font-size: 12pt;
+                background: white;
+                color: black;
+            }
+            
+            .header-nav, footer, .menu-toggle {
+                display: none;
+            }
+            
+            header {
+                background: none;
+                color: black;
+                padding: 0;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .container {
+                padding: 0;
+            }
+            
+            section {
+                margin: 1.5rem 0;
+                page-break-inside: avoid;
+            }
+            
+            .contact-bar {
+                justify-content: flex-start;
+                gap: 10px;
+                margin: 1rem 0;
+            }
+            
+            .contact-item {
+                background: none;
+                color: black;
+                padding: 0;
+                font-size: 0.9rem;
+            }
+            
+            .highlight-card, .skill-category {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+            
+            a {
+                text-decoration: none;
+                color: black;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans">
+<body>
+    <!-- Header Navigation -->
+    <nav class="header-nav">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-user-shield"></i> Harish Kumar M
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" class="nav-link active">ABOUT</a>
+                <a href="#experience" class="nav-link">EXPERIENCE</a>
+                <a href="#skills" class="nav-link">SKILLS</a>
+                <a href="#projects" class="nav-link">PROJECTS</a>
+                <a href="#contact" class="nav-link">CONTACT</a>
+            </div>
+        </div>
+    </nav>
 
-<!-- Header -->
-<header class="text-center py-16 bg-gradient-to-r from-fuchsia-500 via-rose-500 to-orange-400 animate__animated animate__fadeIn">
-  <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Profile" class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto rounded-full shadow-2xl animate-bounce">
-  <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mt-4 text-shadow text-yellow-300">Harish Kumar M</h1>
-  <p class="text-lg mt-3 font-medium text-pink-200">Automation Architect | Performance Engineering Expert | RPA Strategist</p>
-  <p class="mt-5">
-    <a href="#contact" class="inline-block px-6 py-3 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 text-black rounded-full hover:from-purple-500 hover:via-pink-400 hover:to-yellow-400 transition">Contact Me</a>
-  </p>
-</header>
+    <!-- Hero Section -->
+    <header id="about">
+        <div class="container">
+            <h1>Harish Kumar M</h1>
+            <div class="tagline">Director of Quality Engineering | Enterprise Test Architect | Digital Transformation Leader</div>
+            <div class="contact-bar">
+                <a href="tel:+12017368039" class="contact-item">
+                    <i class="fas fa-phone"></i> +1 (201) 736-8039
+                </a>
+                <a href="mailto:info2harish@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i> info2harish@gmail.com
+                </a>
+                <a href="#" class="contact-item download-cv" id="downloadCv">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </header>
 
-<!-- Nav -->
-<nav class="flex justify-center gap-8 py-5 bg-gradient-to-r from-black via-gray-900 to-black text-pink-400 text-base uppercase font-bold">
-  <a href="#about" class="hover:text-yellow-300 transition">About</a>
-  <a href="#experience" class="hover:text-yellow-300 transition">Experience</a>
-  <a href="#skills" class="hover:text-yellow-300 transition">Skills</a>
-  <a href="#projects" class="hover:text-yellow-300 transition">Projects</a>
-  <a href="#contact" class="hover:text-yellow-300 transition">Contact</a>
-</nav>
+    <div class="container">
+        <section>
+            <div class="summary">
+                <h2>Executive Profile</h2>
+                <p>I'm Harish Kumar. M, a Senior QA Architect and Technical Leader with over 20 years of experience in delivering high-impact Quality Engineering solutions across industries including Telecom, BFSI, Healthcare, Retail, Insurance, IoT, and Automotive.
 
-<!-- About -->
-<section id="about" class="max-w-5xl mx-auto py-16 px-6 text-center">
-  <h2 class="text-4xl font-bold mb-4 text-pink-400">About Me</h2>
-  <p class="text-purple-200 leading-relaxed text-base sm:text-lg">
-    I'm a seasoned Automation Architect and QA Leader with over 18 years of global experience in software testing, automation, and performance engineering. I specialize in designing robust automation frameworks, strategizing RPA implementations, and leading high-performing teams across Banking, Telecom, BFSI, Healthcare, and Retail domains. With certifications from IBM and ISTQB, I bring strong technical and leadership skills, driving quality engineering transformation across complex enterprise ecosystems. My passion lies in leveraging cloud, DevOps, and AI-driven automation to deliver reliable and scalable digital solutions.
-  </p>
-</section>
+                 I specialize in Test Automation, Performance & Security Testing, CI/CD optimization, and Cloud QA (AWS/Azure). I've led Testing Centers of Excellence, architected scalable test frameworks, and driven Agile/SAFe QA transformations for Fortune 500 clients like Verizon, United Airlines, eBay, Daimler, and Dubai Metro.
 
-<!-- Experience -->
-<section id="experience" class="py-16 px-6 bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-4xl font-bold mb-8 text-yellow-200">Professional Experience</h2>
-    <ul class="space-y-6 text-white text-lg">
-      <li>
-        <i class="fas fa-star mr-2 text-yellow-400"></i><strong>Automation Architect</strong> – HCL America (Verizon Project) <span class="text-sm">(2024 – Present)</span>
-        <ul class="list-disc list-inside ml-6 text-sm text-white">
-          <li>Designed scalable automation frameworks across Verizon's digital ecosystem.</li>
-          <li>Led performance engineering initiatives using JMeter, Dynatrace, and AWS CloudWatch.</li>
-          <li>Enabled chaos testing and reliability engineering practices on microservices.</li>
-        </ul>
-      </li>
-      <li>
-        <i class="fas fa-star mr-2 text-yellow-400"></i><strong>Lead QA Architect</strong> – HCL Technologies, India <span class="text-sm">(2021 – 2024)</span>
-        <ul class="list-disc list-inside ml-6 text-sm text-white">
-          <li>Drove quality automation for large-scale projects including SOE, POS, Telesales.</li>
-          <li>Built intelligent dashboards and test data management solutions across services.</li>
-          <li>Implemented BDD frameworks with Playwright, Serenity, and Cucumber.</li>
-        </ul>
-      </li>
-      <li>
-        <i class="fas fa-star mr-2 text-yellow-400"></i><strong>Automation Specialist</strong> – TestHouse (Teranet Project) <span class="text-sm">(2020 – 2021)</span>
-        <ul class="list-disc list-inside ml-6 text-sm text-white">
-          <li>Led migration of 6000+ test cases to Selenium-based frameworks.</li>
-          <li>Implemented end-to-end dashboards and CI/CD integration.</li>
-          <li>Performed performance engineering and defect lifecycle optimization.</li>
-        </ul>
-      </li>
-      <li>
-        <i class="fas fa-star mr-2 text-yellow-400"></i><strong>RPA Consultant</strong> – Cigniti Technologies <span class="text-sm">(2019 – 2020)</span>
-        <ul class="list-disc list-inside ml-6 text-sm text-white">
-          <li>Developed and deployed RPA strategies using UI Path, Blue Prism, Automation Anywhere.</li>
-          <li>Led client workshops, assessments, and CoE implementations.</li>
-          <li>Architected cost-saving automation pipelines across Middle East clients.</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</section>
+                 With hands-on expertise in tools like Selenium, Playwright, JMeter, LoadRunner, and RPA platforms like UI Path and Blue Prism, I bring a tech-forward, results-driven approach. I've managed multi-million dollar programs and delivered up to 25% in cost savings while improving time-to-market and system resilience.
 
-<!-- Skills -->
-<section id="skills" class="max-w-5xl mx-auto py-12 px-4 sm:px-6 md:px-8">
-  <h2 class="text-4xl font-bold mb-10 text-green-400">Skills & Tools</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div class="p-6 bg-gradient-to-br from-pink-700 to-purple-900 rounded-xl shadow-lg hover:scale-105 transform transition">
-      <img src="https://cdn-icons-png.flaticon.com/512/2721/2721294.png" class="w-14 h-14 mb-4">
-      <h3 class="font-semibold mb-2 text-yellow-300">Automation Tools</h3>
-      <p>Selenium, Playwright, UFT, Cypress, TOSCA, TestComplete</p>
+                Certified by ISTQB and IBM, I'm passionate about building high-performance QA teams, integrating AI and DevSecOps practices, and driving quality innovation that fuels business growth.</p>
+            </div>
+
+            <div class="role-highlights">
+                <div class="highlight-card">
+                    <h4><i class="fas fa-chess-king"></i> Strategic Leadership</h4>
+                    <p>Established 5+ Testing COEs, mentored 50+ engineers, and led quality initiatives for $50M+ programs</p>
+                </div>
+                <div class="highlight-card">
+                    <h4><i class="fas fa-project-diagram"></i> Technical Architecture</h4>
+                    <p>Designed 25+ enterprise test frameworks serving 5,000+ test cases with 60-80% efficiency gains</p>
+                </div>
+                <div class="highlight-card">
+                    <h4><i class="fas fa-chart-line"></i> Business Impact</h4>
+                    <p>Drove 25-40% cost reduction while improving quality metrics across 50+ projects</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+
+            <details>
+                <summary><strong>QA Architect | HCL America (03/2024 - Present | NJ, USA)</strong></summary>
+                <div class="experience-content">
+                    <div class="experience-section">
+                        <h4><i class="fas fa-rocket"></i> Test Automation Leadership</h4>
+                        <ul>
+                            <li>Built a hybrid test automation framework (Playwright/JavaScript, Selenium/Java) for United Airlines' Starlink project, enabling parallel execution across web, iOS, Android, and API platforms, reducing regression cycles by 60%</li>
+                            <li>Spearheaded BDD adoption (Serenity, Cucumber) with 300+ executable specifications, improving requirement clarity by 35% and reducing production defects by 40%</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-cogs"></i> CI/CD Optimization</h4>
+                        <ul>
+                            <li>Automated CI/CD pipelines (Jenkins, MERN stack) with Sauce Labs integration, slashing regression testing time from 8 hours to 3 hours (62.5% improvement)</li>
+                            <li>Engineered dynamic test data system (Java, SQL) that eliminated 20+ manual hours/week for test scenario preparation</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-plug"></i> API & Performance Testing</h4>
+                        <ul>
+                            <li>Developed 200+ API tests (Postman, ReadyAPI) for PNR/SHARES integrations, achieving 98% coverage of critical booking workflows</li>
+                            <li>Launched real-time QA dashboards (Jira, Zephyr) tracking 15+ KPIs, enabling data-driven go/no-go decisions</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-users"></i> Team Mentorship</h4>
+                        <ul>
+                            <li>Mentored 5 QA engineers in framework adoption, boosting team velocity by 30% within 3 sprints</li>
+                            <li>Introduced chaos engineering practices to enhance system resilience and reliability</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary><strong>Senior Automation Architect | HCL Technologies (11/2021 - 03/2024 | India)</strong></summary>
+                <div class="experience-content">
+                    <div class="experience-section">
+                        <h4><i class="fas fa-laptop-code"></i> Framework Development</h4>
+                        <ul>
+                            <li>Designed a cloud-based test automation framework (Playwright/JavaScript, Selenium/Java) for Verizon's Digital Sales platform, enabling parallel execution across 5,000+ test cases and reducing regression time by 55%</li>
+                            <li>Optimized mobile test automation (Appium, HeadSpin) for Verizon's MY Verizon app, achieving 98% test coverage across 50+ real devices and reducing device-specific defects by 70%</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-server"></i> API & Performance Engineering</h4>
+                        <ul>
+                            <li>Created and executed API test suites (Postman, ReadyAPI) for Verizon's billing and order management systems, automating 400+ test scenarios and improving integration test coverage by 65%</li>
+                            <li>Built performance test solutions (JMeter, Dynatrace) for Verizon's 5G network services, simulating 50,000+ concurrent users and identifying 30% throughput improvement opportunities</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-code-branch"></i> DevOps Integration</h4>
+                        <ul>
+                            <li>Established CI/CD pipelines (Jenkins, Kubernetes) for Verizon's microservices architecture, enabling automated daily regression runs and reducing release cycles by 40%</li>
+                            <li>Implemented shift-left testing strategies to accelerate feedback loops and reduce defect escape rates</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary><strong>QA Architect | Test House (Tetrasoft) (05/2020 - 11/2021 | India)</strong></summary>
+                <div class="experience-content">
+                    <div class="experience-section">
+                        <h4><i class="fas fa-sync-alt"></i> Legacy Modernization</h4>
+                        <ul>
+                            <li>Spearheaded migration of 6,000+ Test Complete scripts to Selenium WebDriver/Serenity BDD, cutting maintenance costs by 40% while achieving 95% test coverage</li>
+                            <li>Automated SOA/OSB testing with custom data generation, eliminating 15+ manual hours/week for test scenario setup</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-database"></i> Data & Reporting</h4>
+                        <ul>
+                            <li>Built program-level test database and EZE health dashboard, reducing defect detection time by 35% across frontend/middleware/backend systems</li>
+                            <li>Integrated JUnit/JBehave into CI/CD pipelines to enable daily regression testing, accelerating releases by 30%</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-tachometer-alt"></i> Performance Optimization</h4>
+                        <ul>
+                            <li>Identified 20% performance bottlenecks through log analysis and engineering recommendations</li>
+                            <li>Conducted root cause analysis for critical defects, improving system stability and reliability</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary><strong>QA Automation Architect | Colruyt Group (09/2019 - 05/2020 | Belgium)</strong></summary>
+                <div class="experience-content">
+                    <div class="experience-section">
+                        <h4><i class="fas fa-chess"></i> Enterprise Strategy</h4>
+                        <ul>
+                            <li>Designed enterprise test automation strategy using Selenium/Tosca/Protractor, standardizing frameworks across 15+ programs and reducing scripting efforts by 40%</li>
+                            <li>Led Agile transformation of QA processes, reducing manual testing dependency by 50% via Cucumber/Serenity BDD implementation</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-coins"></i> Cost Efficiency</h4>
+                        <ul>
+                            <li>Architected Azure Blob storage integration for test artifacts, cutting mainframe testing costs by 30% through optimized data management</li>
+                            <li>Delivered cost-benefit analyses demonstrating 25% FTE savings through automation, influencing C-level investment decisions</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-chart-bar"></i> Visibility & Governance</h4>
+                        <ul>
+                            <li>Developed KPI dashboards (HP ALM/JIRA) that improved test automation visibility by 60%, enabling data-driven decisions for $2M+ automation initiative</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary><strong>RPA/Test Architect | Cigniti Technologies & Rushcode IT Solutions (07/2017 - 09/2019)</strong></summary>
+                <div class="experience-content">
+                    <div class="experience-section">
+                        <h4><i class="fas fa-robot"></i> RPA Leadership</h4>
+                        <ul>
+                            <li>Led RPA implementations (UiPath/Blue Prism) for global clients including Daimler AG and Saudi Payments, delivering 35% FTE reduction through process automation</li>
+                            <li>Developed RPA cost-benefit models that influenced $1.2M+ automation investments for banking/transportation clients</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-clipboard-list"></i> Requirement Management</h4>
+                        <ul>
+                            <li>Architected requirement management systems (DOORS NG) for Dubai Metro, migrating 25,000+ requirements to enterprise model and reducing documentation errors by 50%</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-chalkboard-teacher"></i> Training & Enablement</h4>
+                        <ul>
+                            <li>Delivered corporate trainings on Selenium/UFT/RIT to 200+ professionals across IBM, Alstom, and Essilor</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary><strong>Senior QA Architect | Accolite Labs/Accenture/Technosoft (03/2012 - 06/2017)</strong></summary>
+                <div class="experience-content">
+                    <div class="experience-section">
+                        <h4><i class="fas fa-tachometer-alt"></i> Performance Engineering</h4>
+                        <ul>
+                            <li>Led performance engineering using JMeter/Dynatrace, identifying 40% bottleneck reduction in query processing for high-volume database workloads</li>
+                            <li>Created diagnostic dashboards (JProfiler/nmon) that reduced mean-time-to-resolution for SQL issues by 60%</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-code"></i> Framework Design</h4>
+                        <ul>
+                            <li>Designed test automation framework (Test Complete/Selenium/Serenity BDD) for SQL performance tools, reducing regression time by 50% through parallel test execution</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-users"></i> Team Development</h4>
+                        <ul>
+                            <li>Mentored 8+ junior engineers in Agile testing methodologies, improving team velocity by 25% across 3 concurrent releases</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary><strong>Automation Lead | Zensar Technologies (2009 - 2012)</strong></summary>
+                <div class="experience-content">
+                    <div class="experience-section">
+                        <h4><i class="fas fa-university"></i> Banking Systems Automation</h4>
+                        <ul>
+                            <li>Automated core banking systems using QTP/UFT, achieving 30% faster regression cycles through hybrid framework design</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-chart-line"></i> Performance Testing</h4>
+                        <ul>
+                            <li>Engineered LoadRunner performance tests for insurance platforms processing 1M+ daily transactions, identifying 25% throughput bottlenecks</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-stream"></i> Process Improvement</h4>
+                        <ul>
+                            <li>Implemented standardized test documentation practices, reducing test case creation time by 40%</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <details>
+                <summary><strong>QA Engineer | Early Career (2005 - 2009)</strong></summary>
+                <div class="experience-content">
+                    <div class="experience-section">
+                        <h4><i class="fas fa-check-circle"></i> Manual & Automated Testing</h4>
+                        <ul>
+                            <li>Performed comprehensive manual testing (Bugzilla, Rational FT) for HR/CRM systems, improving defect detection by 35%</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-project-diagram"></i> Framework Development</h4>
+                        <ul>
+                            <li>Developed Rational Robot frameworks for mainframe financial systems at 3i-Infotech, reducing test creation time by 40%</li>
+                        </ul>
+                    </div>
+                    <div class="experience-section">
+                        <h4><i class="fas fa-cogs"></i> Quality Processes</h4>
+                        <ul>
+                            <li>Established foundational QA processes for early-stage projects, setting standards for test documentation and execution</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <section id="skills">
+            <h2><i class="fas fa-laptop-code"></i> Technical Architecture</h2>
+            <div class="skills-tools">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4><i class="fas fa-robot"></i> Automation Tools</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Selenium</li>
+                            <li><i class="fas fa-check"></i> Playwright</li>
+                            <li><i class="fas fa-check"></i> UFT</li>
+                            <li><i class="fas fa-check"></i> Cypress</li>
+                            <li><i class="fas fa-check"></i> TOSCA</li>
+                            <li><i class="fas fa-check"></i> TestComplete</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-tachometer-alt"></i> Performance</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> JMeter</li>
+                            <li><i class="fas fa-check"></i> LoadRunner</li>
+                            <li><i class="fas fa-check"></i> Dynatrace</li>
+                            <li><i class="fas fa-check"></i> NewRelic</li>
+                            <li><i class="fas fa-check"></i> Lighthouse</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-code"></i> Programming</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Java</li>
+                            <li><i class="fas fa-check"></i> JavaScript</li>
+                            <li><i class="fas fa-check"></i> Python</li>
+                            <li><i class="fas fa-check"></i> Shell Scripting</li>
+                            <li><i class="fas fa-check"></i> Spring Boot</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> AWS</li>
+                            <li><i class="fas fa-check"></i> Azure</li>
+                            <li><i class="fas fa-check"></i> Jenkins</li>
+                            <li><i class="fas fa-check"></i> Docker</li>
+                            <li><i class="fas fa-check"></i> Git</li>
+                            <li><i class="fas fa-check"></i> GitLab</li>
+                            <li><i class="fas fa-check"></i> Kubernetes</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-layer-group"></i> Test Frameworks</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> BDD</li>
+                            <li><i class="fas fa-check"></i> TDD</li>
+                            <li><i class="fas fa-check"></i> ATDD</li>
+                            <li><i class="fas fa-check"></i> Cucumber</li>
+                            <li><i class="fas fa-check"></i> Serenity</li>
+							 <li><i class="fas fa-check"></i> JBehave</li>
+                            <li><i class="fas fa-check"></i> Mocha</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h4><i class="fas fa-cogs"></i> RPA & Process Automation</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> UI Path</li>
+                            <li><i class="fas fa-check"></i> Blue Prism</li>
+                            <li><i class="fas fa-check"></i> Automation Anywhere</li>
+                            <li><i class="fas fa-check"></i> IBM RPA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <div class="p-6 bg-gradient-to-br from-indigo-700 to-blue-900 rounded-xl shadow-lg hover:scale-105 transform transition">
-      <img src="https://cdn-icons-png.flaticon.com/512/225/225245.png" class="w-14 h-14 mb-4">
-      <h3 class="font-semibold mb-2 text-yellow-300">Performance</h3>
-      <p>JMeter, LoadRunner, Dynatrace, NewRelic, Lighthouse</p>
-    </div>
-    <div class="p-6 bg-gradient-to-br from-purple-700 to-pink-900 rounded-xl shadow-lg hover:scale-105 transform transition">
-      <img src="https://cdn-icons-png.flaticon.com/512/919/919830.png" class="w-14 h-14 mb-4">
-      <h3 class="font-semibold mb-2 text-yellow-300">Programming</h3>
-      <p>Java, JavaScript, Python, Shell Scripting, Spring Boot</p>
-    </div>
-    <div class="p-6 bg-gradient-to-br from-yellow-600 to-orange-800 rounded-xl shadow-lg hover:scale-105 transform transition">
-      <img src="https://cdn-icons-png.flaticon.com/512/5969/5969059.png" class="w-14 h-14 mb-4">
-      <h3 class="font-semibold mb-2 text-yellow-300">Cloud & DevOps</h3>
-      <p>AWS, Azure, Jenkins, Docker, Git, GitLab, Kubernetes</p>
-    </div>
-    <div class="p-6 bg-gradient-to-br from-green-700 to-teal-900 rounded-xl shadow-lg hover:scale-105 transform transition">
-      <img src="https://cdn-icons-png.flaticon.com/512/2721/2721280.png" class="w-14 h-14 mb-4">
-      <h3 class="font-semibold mb-2 text-yellow-300">Test Frameworks</h3>
-      <p>BDD, TDD, ATDD using Cucumber, Serenity, JBehave, Mocha</p>
-    </div>
-    <div class="p-6 bg-gradient-to-br from-blue-600 to-teal-700 rounded-xl shadow-lg hover:scale-105 transform transition">
-      <img src="https://cdn-icons-png.flaticon.com/512/2920/2920269.png" class="w-14 h-14 mb-4">
-      <h3 class="font-semibold mb-2 text-yellow-300">RPA & Process Automation</h3>
-      <p>UI Path, Blue Prism, Automation Anywhere, IBM RPA</p>
-    </div>
-  </div>
-</section>
 
-<!-- Projects -->
-<section id="projects" class="py-16 px-6 bg-gradient-to-r from-pink-700 via-purple-800 to-indigo-800">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-4xl font-bold mb-8 text-yellow-200">Key Projects</h2>
-    <ul class="space-y-6 text-lg text-white">
-      <li>
-        <i class="fas fa-lightbulb text-yellow-300 mr-2"></i>
-        <strong>Digital Sales Automation – Verizon (USA)</strong><br>
-        Led test automation, performance testing, chaos engineering and test data strategy for cloud-based digital sales applications.
-      </li>
-      <li>
-        <i class="fas fa-lightbulb text-yellow-300 mr-2"></i>
-        <strong>Chubb Automation Migration – Teranet</strong><br>
-        Migrated legacy frameworks to Selenium, implemented dashboard monitoring and executed CI/CD automation pipelines.
-      </li>
-      <li>
-        <i class="fas fa-lightbulb text-yellow-300 mr-2"></i>
-        <strong>Nordea Banking Solutions – Europe</strong><br>
-        Architected BDD frameworks and executed performance benchmarks for banking platforms across multiple microservices.
-      </li>
-    </ul>
-  </div>
-</section>
+    <footer>
+        <div class="container">
+            <h3>Connect With Me</h3>
+            <p>Open to executive consulting engagements, speaking opportunities, and leadership roles in Quality Engineering</p>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>© <span id="current-year"></span> Harish Kumar M | QA Executive Leadership Profile</p>
+        </div>
+    </footer>
 
-<!-- Contact -->
-<section id="contact" class="max-w-5xl mx-auto py-16 px-6 text-center">
-  <h2 class="text-4xl font-bold mb-6 text-pink-400">Contact Me</h2>
-  <p class="mb-3"><i class="fas fa-envelope text-yellow-400 mr-2"></i>Email: <a href="mailto:info2harish@gmail.com" class="hover:underline">info2harish@gmail.com</a></p>
-  <p class="mb-3"><i class="fas fa-phone text-yellow-400 mr-2"></i>Phone: +1-2017368039</p>
-  <p class="mb-3"><i class="fas fa-map-marker-alt text-yellow-400 mr-2"></i>Location: Edison, NJ – USA</p>
-  <p><i class="fab fa-linkedin text-yellow-400 mr-2"></i><a href="https://www.linkedin.com/in/harisharchitect" target="_blank" class="hover:underline">linkedin.com/in/harisharchitect</a></p>
-</section>
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
-<!-- Footer -->
-<footer class="text-center text-gray-400 py-6 bg-gradient-to-r from-gray-900 via-black to-gray-900 border-t border-gray-800">
-  &copy; 2025 Harish Kumar M. All rights reserved.
-</footer>
+        // CV download functionality
+        document.getElementById('downloadCv').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Replace with the actual path to your client's CV file
+            const cvUrl = 'C:/Users/IMF1COB/Documents/ATS resume making/Harieshportfolio/HarishKumarMResume.pdf';
+            
+            // Create a temporary anchor element to trigger download
+            const link = document.createElement('a');
+            link.href = cvUrl;
+            link.download = 'Harish_Kumar_QA_Executive_CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Optional: Track download event
+            console.log('CV download initiated');
+        });
 
-<script>
-  ScrollReveal().reveal('section', { distance: '50px', duration: 1000, origin: 'bottom', interval: 200 });
-</script>
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeIn 0.8s ease-out forwards`;
+                }
+            });
+        }, { threshold: 0.1 });
 
+        document.querySelectorAll('.highlight-card, .skill-category').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
