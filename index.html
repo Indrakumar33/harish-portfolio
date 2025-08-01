@@ -17,6 +17,9 @@
             --text: #334155;
             --text-light: #64748b;
             --header-dark: #0f172a;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+            --shadow-strong: rgba(0, 0, 0, 0.2);
         }
 
         @keyframes fadeIn {
@@ -26,7 +29,7 @@
 
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.03); }
             100% { transform: scale(1); }
         }
 
@@ -36,8 +39,16 @@
             100% { background-position: 0% 50%; }
         }
 
+        @keyframes subtleGlow {
+            0% { box-shadow: 0 0 0px var(--accent); }
+            50% { box-shadow: 0 0 10px var(--accent); }
+            100% { box-shadow: 0 0 0px var(--accent); }
+        }
+
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
@@ -45,9 +56,8 @@
             line-height: 1.6;
             color: var(--text);
             background-color: var(--light);
-            margin: 0;
-            padding: 0;
             animation: fadeIn 0.8s ease-out;
+            padding-top: 60px; /* Added for fixed header */
         }
 
         .container {
@@ -64,7 +74,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px var(--shadow-medium);
         }
 
         .nav-container {
@@ -88,6 +98,11 @@
 
         .logo i {
             color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover i {
+            transform: rotate(10deg) scale(1.1);
         }
 
         .nav-links {
@@ -107,6 +122,7 @@
 
         .nav-link:hover {
             color: white;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
         }
 
         .nav-link::after {
@@ -131,6 +147,7 @@
 
         .nav-link.active::after {
             width: 100%;
+            background-color: white;
         }
 
         .menu-toggle {
@@ -151,21 +168,9 @@
             padding: 7rem 0 3rem;
             text-align: center;
             border-radius: 0 0 20px 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px var(--shadow-medium);
             position: relative;
             overflow: hidden;
-            margin-top: 60px;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
-            background-size: cover;
         }
 
         h1 {
@@ -173,7 +178,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             position: relative;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
 
         .tagline {
@@ -183,6 +188,7 @@
             max-width: 800px;
             font-weight: 300;
             position: relative;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         .contact-bar {
@@ -198,19 +204,23 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             padding: 0.7rem 1.2rem;
             border-radius: 50px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
             transition: all 0.3s ease;
             text-decoration: none;
             color: white;
             font-size: 0.95rem;
+            box-shadow: 0 3px 8px var(--shadow-medium);
+            cursor: pointer; /* Ensure the link looks clickable */
         }
 
         .contact-item:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-3px);
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px var(--shadow-strong);
+            animation: pulse 1s infinite ease-in-out;
         }
 
         .download-cv {
@@ -234,6 +244,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
         }
 
         h2::after {
@@ -243,7 +254,7 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
             border-radius: 2px;
         }
 
@@ -251,15 +262,15 @@
             background-color: white;
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px var(--shadow-light);
             margin-bottom: 2rem;
             border-left: 5px solid var(--primary);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .summary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px var(--shadow-medium);
         }
 
         .role-highlights {
@@ -272,7 +283,7 @@
         .highlight-card {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px var(--shadow-light);
             padding: 1.5rem;
             transition: all 0.3s ease;
             position: relative;
@@ -281,21 +292,21 @@
         }
 
         .highlight-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
         }
 
         details {
             background: white;
             margin-bottom: 1.25rem;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px var(--shadow-light);
             overflow: hidden;
             transition: all 0.3s ease;
         }
 
         details:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px var(--shadow-medium);
         }
 
         summary {
@@ -328,6 +339,7 @@
         details[open] summary {
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         details[open] summary::after {
@@ -356,6 +368,11 @@
 
         .experience-section h4 i {
             color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .experience-section h4:hover i {
+            transform: scale(1.2);
         }
 
         .experience-section ul {
@@ -367,20 +384,18 @@
             margin-bottom: 0.6rem;
             position: relative;
             padding-left: 1.25rem;
+            transition: color 0.2s ease;
         }
 
-        .experience-section li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
+        .experience-section li:hover {
+            color: var(--dark);
         }
 
         /* Skills & Tools Section */
         .skills-tools {
             background-color: white;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px var(--shadow-light);
             padding: 2rem;
             margin-bottom: 2rem;
         }
@@ -402,7 +417,8 @@
 
         .skill-category:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px var(--shadow-medium);
+            border-left-color: var(--primary);
         }
 
         .skill-category h4 {
@@ -416,6 +432,10 @@
 
         .skill-category h4 i {
             color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+        .skill-category:hover h4 i {
+            transform: rotate(5deg) scale(1.1);
         }
 
         .skill-category ul {
@@ -436,6 +456,429 @@
         .skill-category li i {
             color: var(--success);
             font-size: 0.8rem;
+        }
+
+        /* Blog Section Styles */
+        .blog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .blog-header h2 {
+            margin-bottom: 0;
+        }
+
+        .create-blog-button {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+
+        .create-blog-button:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 1.5rem;
+        }
+
+        .blog-post-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-light);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary);
+        }
+
+        .blog-post-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 15px 30px var(--shadow-medium);
+        }
+
+        .blog-post-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .blog-post-content {
+            padding: 1.5rem;
+        }
+
+        .blog-post-content h3 {
+            font-size: 1.25rem;
+            color: var(--dark);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+        .blog-post-card:hover .blog-post-content h3 {
+            color: var(--primary);
+        }
+
+        .blog-post-content .meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .blog-post-content .meta i {
+            color: var(--accent);
+        }
+
+        .blog-post-content p {
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+        }
+
+        .blog-post-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .blog-post-actions .action-button {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 5px var(--shadow-light);
+            font-size: 0.9rem;
+        }
+
+        .blog-post-actions .read-more {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .blog-post-actions .read-more:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+        .blog-post-actions .edit-button {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .blog-post-actions .edit-button:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+        .blog-post-actions .delete-button {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .blog-post-actions .delete-button:hover {
+            background-color: #dc2626;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+
+        /* Full Blog Post Modal/Overlay */
+        .blog-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .blog-modal-content {
+            background: white;
+            padding: 40px 30px 30px; /* Increased top padding */
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 15px 40px var(--shadow-strong);
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+            border: 1px solid var(--primary);
+        }
+
+        .blog-modal-content h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-top: 25px; /* Adjusted margin-top for content within modal */
+            margin-bottom: 1rem;
+        }
+
+        .blog-modal-content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-top: 15px; /* Adjusted margin-top for paragraphs within modal */
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .blog-modal-content .meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .blog-modal-close:hover {
+            color: var(--accent);
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        /* Create New Blog Section */
+        #create-blog-section {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-light);
+            padding: 2.5rem;
+            margin-top: 2rem;
+            border-left: 5px solid var(--primary);
+            display: none;
+        }
+
+        #create-blog-section h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .create-blog-form .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .create-blog-form .form-group input[type="text"],
+        .create-blog-form .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .create-blog-form .form-group input[type="text"]:focus,
+        .create-blog-form .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2), 0 0 8px rgba(37, 99, 235, 0.4);
+        }
+
+        .create-blog-form .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .create-blog-form button[type="submit"] {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+
+        .create-blog-form button[type="submit"]:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+        .blog-data-output {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f0f4f8;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .blog-data-output h4 {
+            color: var(--dark);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .blog-data-output textarea {
+            width: 100%;
+            min-height: 200px;
+            background-color: #e2e8f0;
+            border: 1px solid #a0aec0;
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--dark);
+            resize: vertical;
+        }
+
+        .copy-button {
+            background-color: var(--success);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+
+        .copy-button:hover {
+            background-color: #059669;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+        .message-box {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2001;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .message-box.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
+        /* Contact Section Styles */
+        .contact-form-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-light);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2), 0 0 8px rgba(37, 99, 235, 0.4);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+
+        .submit-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px var(--shadow-medium);
         }
 
         footer {
@@ -465,11 +908,14 @@
             color: white;
             font-size: 1.1rem;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 5px var(--shadow-light);
         }
 
         .social-link:hover {
             background: var(--accent);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+            animation: subtleGlow 1.5s infinite ease-in-out;
         }
 
         /* Responsive Adjustments */
@@ -481,6 +927,11 @@
                 text-align: center;
                 padding: 1rem 0;
                 gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: var(--header-dark);
+                box-shadow: 0 4px 20px var(--shadow-medium);
             }
             
             .nav-links.active {
@@ -496,18 +947,25 @@
             }
             
             .role-highlights {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
             
             .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .blog-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
+            body {
+                padding-top: 56px;
+            }
+
             header {
                 padding: 6rem 0 2.5rem;
-                margin-top: 56px;
             }
             
             h1 {
@@ -523,17 +981,28 @@
                 font-size: 0.9rem;
             }
             
-            .summary, .highlight-card, .skill-category {
+            .summary, .highlight-card, .skill-category, .blog-post-card, .contact-form-container {
                 padding: 1.25rem;
             }
             
             h2 {
                 font-size: 1.75rem;
             }
+
+            .blog-modal-content {
+                padding: 20px;
+            }
+            .blog-modal-content h3 {
+                font-size: 1.5rem;
+            }
         }
 
         @media (max-width: 576px) {
-            .role-highlights, .skills-grid {
+            body {
+                padding-top: 56px;
+            }
+            
+            .role-highlights, .skills-grid, .blog-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -564,6 +1033,10 @@
             .summary p {
                 font-size: 0.95rem;
             }
+
+            .blog-post-card img {
+                height: 180px;
+            }
         }
 
         /* Print Styles */
@@ -572,9 +1045,10 @@
                 font-size: 12pt;
                 background: white;
                 color: black;
+                padding-top: 0;
             }
             
-            .header-nav, footer, .menu-toggle {
+            .header-nav, footer, .menu-toggle, .blog-modal-overlay, #create-blog-section, .create-blog-button {
                 display: none;
             }
             
@@ -609,7 +1083,7 @@
                 font-size: 0.9rem;
             }
             
-            .highlight-card, .skill-category {
+            .highlight-card, .skill-category, .blog-post-card, .contact-form-container {
                 box-shadow: none;
                 border: 1px solid #ddd;
                 page-break-inside: avoid;
@@ -637,43 +1111,36 @@
                 <a href="#experience" class="nav-link">EXPERIENCE</a>
                 <a href="#skills" class="nav-link">SKILLS</a>
                 <a href="#projects" class="nav-link">PROJECTS</a>
+                <a href="#blog" class="nav-link">BLOG</a>
                 <a href="#contact" class="nav-link">CONTACT</a>
             </div>
         </div>
     </nav>
-
     <!-- Hero Section -->
     <header id="about">
         <div class="container">
             <h1>Harish Kumar M</h1>
             <div class="tagline">Director of Quality Engineering | Enterprise Test Architect | Digital Transformation Leader</div>
             <div class="contact-bar">
+                <!-- Updated CV Download Link to use the provided Google Drive URL -->
+                <a href="https://drive.google.com/file/d/1fDBQb8Q-JwgjXe1VJB--F0IE0-Id5hMR/view?usp=drivesdk" class="contact-item download-cv" download="Harish_Kumar_QA_Executive_CV.pdf" target="_blank">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
                 <a href="tel:+12017368039" class="contact-item">
                     <i class="fas fa-phone"></i> +1 (201) 736-8039
                 </a>
                 <a href="mailto:info2harish@gmail.com" class="contact-item">
                     <i class="fas fa-envelope"></i> info2harish@gmail.com
                 </a>
-                <a href="#" class="contact-item download-cv" id="downloadCv">
-                    <i class="fas fa-download"></i> Download CV
-                </a>
             </div>
         </div>
     </header>
-
     <div class="container">
         <section>
             <div class="summary">
                 <h2>Executive Profile</h2>
-                <p>I'm Harish Kumar. M, a Senior QA Architect and Technical Leader with over 20 years of experience in delivering high-impact Quality Engineering solutions across industries including Telecom, BFSI, Healthcare, Retail, Insurance, IoT, and Automotive.
-
-                 I specialize in Test Automation, Performance & Security Testing, CI/CD optimization, and Cloud QA (AWS/Azure). I've led Testing Centers of Excellence, architected scalable test frameworks, and driven Agile/SAFe QA transformations for Fortune 500 clients like Verizon, United Airlines, eBay, Daimler, and Dubai Metro.
-
-                 With hands-on expertise in tools like Selenium, Playwright, JMeter, LoadRunner, and RPA platforms like UI Path and Blue Prism, I bring a tech-forward, results-driven approach. I've managed multi-million dollar programs and delivered up to 25% in cost savings while improving time-to-market and system resilience.
-
-                Certified by ISTQB and IBM, I'm passionate about building high-performance QA teams, integrating AI and DevSecOps practices, and driving quality innovation that fuels business growth.</p>
+                <p>I'm Harish Kumar. M, a Senior QA Architect and Technical Leader with over 20 years of experience in delivering high-impact Quality Engineering solutions across industries including Telecom, BFSI, Healthcare, Retail, Insurance, IoT, and Automotive. I specialize in Test Automation, Performance & Security Testing, CI/CD optimization, and Cloud QA (AWS/Azure). I've led Testing Centers of Excellence, architected scalable test frameworks, and driven Agile/SAFe QA transformations for Fortune 500 clients like Verizon, United Airlines, eBay, Daimler, and Dubai Metro. With hands-on expertise in tools like Selenium, Playwright, JMeter, LoadRunner, and RPA platforms like UI Path and Blue Prism, I bring a tech-forward, results-driven approach. I've managed multi-million dollar programs and delivered up to 25% in cost savings while improving time-to-market and system resilience. Certified by ISTQB and IBM, I'm passionate about building high-performance QA teams, integrating AI and DevSecOps practices, and driving quality innovation that fuels business growth.</p>
             </div>
-
             <div class="role-highlights">
                 <div class="highlight-card">
                     <h4><i class="fas fa-chess-king"></i> Strategic Leadership</h4>
@@ -689,10 +1156,8 @@
                 </div>
             </div>
         </section>
-
         <section id="experience">
             <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
-
             <details>
                 <summary><strong>QA Architect | HCL America (03/2024 - Present | NJ, USA)</strong></summary>
                 <div class="experience-content">
@@ -726,7 +1191,6 @@
                     </div>
                 </div>
             </details>
-
             <details>
                 <summary><strong>Senior Automation Architect | HCL Technologies (11/2021 - 03/2024 | India)</strong></summary>
                 <div class="experience-content">
@@ -753,7 +1217,6 @@
                     </div>
                 </div>
             </details>
-
             <details>
                 <summary><strong>QA Architect | Test House (Tetrasoft) (05/2020 - 11/2021 | India)</strong></summary>
                 <div class="experience-content">
@@ -780,7 +1243,6 @@
                     </div>
                 </div>
             </details>
-
             <details>
                 <summary><strong>QA Automation Architect | Colruyt Group (09/2019 - 05/2020 | Belgium)</strong></summary>
                 <div class="experience-content">
@@ -806,7 +1268,6 @@
                     </div>
                 </div>
             </details>
-
             <details>
                 <summary><strong>RPA/Test Architect | Cigniti Technologies & Rushcode IT Solutions (07/2017 - 09/2019)</strong></summary>
                 <div class="experience-content">
@@ -831,7 +1292,6 @@
                     </div>
                 </div>
             </details>
-
             <details>
                 <summary><strong>Senior QA Architect | Accolite Labs/Accenture/Technosoft (03/2012 - 06/2017)</strong></summary>
                 <div class="experience-content">
@@ -856,7 +1316,6 @@
                     </div>
                 </div>
             </details>
-
             <details>
                 <summary><strong>Automation Lead | Zensar Technologies (2009 - 2012)</strong></summary>
                 <div class="experience-content">
@@ -873,14 +1332,11 @@
                         </ul>
                     </div>
                     <div class="experience-section">
-                        <h4><i class="fas fa-stream"></i> Process Improvement</h4>
-                        <ul>
-                            <li>Implemented standardized test documentation practices, reducing test case creation time by 40%</li>
+                        <h4><i class="fas fa-stream"></i> Process Improvement</li>
                         </ul>
                     </div>
                 </div>
             </details>
-
             <details>
                 <summary><strong>QA Engineer | Early Career (2005 - 2009)</strong></summary>
                 <div class="experience-content">
@@ -899,134 +1355,423 @@
                     <div class="experience-section">
                         <h4><i class="fas fa-cogs"></i> Quality Processes</h4>
                         <ul>
-                            <li>Established foundational QA processes for early-stage projects, setting standards for test documentation and execution</li>
+                            <li>Introduced structured defect management and test case design practices, improving overall test process maturity by 20%</li>
                         </ul>
                     </div>
                 </div>
             </details>
         </section>
-
         <section id="skills">
-            <h2><i class="fas fa-laptop-code"></i> Technical Architecture</h2>
+            <h2><i class="fas fa-tools"></i> Skills & Tools</h2>
             <div class="skills-tools">
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h4><i class="fas fa-robot"></i> Automation Tools</h4>
+                        <h4><i class="fas fa-laptop-code"></i> Automation & Frameworks</h4>
                         <ul>
-                            <li><i class="fas fa-check"></i> Selenium</li>
-                            <li><i class="fas fa-check"></i> Playwright</li>
-                            <li><i class="fas fa-check"></i> UFT</li>
-                            <li><i class="fas fa-check"></i> Cypress</li>
-                            <li><i class="fas fa-check"></i> TOSCA</li>
-                            <li><i class="fas fa-check"></i> TestComplete</li>
+                            <li><i class="fas fa-check-circle"></i> Selenium WebDriver, Playwright, Appium</li>
+                            <li><i class="fas fa-check-circle"></i> TestNG, JUnit, Serenity BDD, Cucumber</li>
+                            <li><i class="fas fa-check-circle"></i> Postman, ReadyAPI, Rest Assured</li>
+                            <li><i class="fas fa-check-circle"></i> Protractor, Test Complete, UFT/QTP</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4><i class="fas fa-tachometer-alt"></i> Performance</h4>
+                        <h4><i class="fas fa-cogs"></i> DevOps & CI/CD</h4>
                         <ul>
-                            <li><i class="fas fa-check"></i> JMeter</li>
-                            <li><i class="fas fa-check"></i> LoadRunner</li>
-                            <li><i class="fas fa-check"></i> Dynatrace</li>
-                            <li><i class="fas fa-check"></i> NewRelic</li>
-                            <li><i class="fas fa-check"></i> Lighthouse</li>
+                            <li><i class="fas fa-check-circle"></i> Jenkins, Azure DevOps, GitLab CI</li>
+                            <li><i class="fas fa-check-circle"></i> Docker, Kubernetes, Ansible</li>
+                            <li><i class="fas fa-check-circle"></i> AWS, Azure, GCP Cloud Services</li>
+                            <li><i class="fas fa-check-circle"></i> MERN Stack, ELK Stack</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4><i class="fas fa-code"></i> Programming</h4>
+                        <h4><i class="fas fa-tachometer-alt"></i> Performance & Security</h4>
                         <ul>
-                            <li><i class="fas fa-check"></i> Java</li>
-                            <li><i class="fas fa-check"></i> JavaScript</li>
-                            <li><i class="fas fa-check"></i> Python</li>
-                            <li><i class="fas fa-check"></i> Shell Scripting</li>
-                            <li><i class="fas fa-check"></i> Spring Boot</li>
+                            <li><i class="fas fa-check-circle"></i> JMeter, LoadRunner, Gatling</li>
+                            <li><i class="fas fa-check-circle"></i> Dynatrace, Splunk, AppDynamics</li>
+                            <li><i class="fas fa-check-circle"></i> Burp Suite, OWASP, SonarQube</li>
+                            <li><i class="fas fa-check-circle"></i> Chaos Engineering, Resilience Testing</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
+                        <h4><i class="fas fa-project-diagram"></i> Project & Methodologies</h4>
                         <ul>
-                            <li><i class="fas fa-check"></i> AWS</li>
-                            <li><i class="fas fa-check"></i> Azure</li>
-                            <li><i class="fas fa-check"></i> Jenkins</li>
-                            <li><i class="fas fa-check"></i> Docker</li>
-                            <li><i class="fas fa-check"></i> Git</li>
-                            <li><i class="fas fa-check"></i> GitLab</li>
-                            <li><i class="fas fa-check"></i> Kubernetes</li>
+                            <li><i class="fas fa-check-circle"></i> Agile (Scrum), SAFe, Waterfall</li>
+                            <li><i class="fas fa-check-circle"></i> Jira, Confluence, HP ALM/QC, Zephyr</li>
+                            <li><i class="fas fa-check-circle"></i> SDLC, STLC, V-Model</li>
+                            <li><i class="fas fa-check-circle"></i> Test Plan & Strategy, Risk Management</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4><i class="fas fa-layer-group"></i> Test Frameworks</h4>
+                        <h4><i class="fas fa-robot"></i> RPA & Other Tools</h4>
                         <ul>
-                            <li><i class="fas fa-check"></i> BDD</li>
-                            <li><i class="fas fa-check"></i> TDD</li>
-                            <li><i class="fas fa-check"></i> ATDD</li>
-                            <li><i class="fas fa-check"></i> Cucumber</li>
-                            <li><i class="fas fa-check"></i> Serenity</li>
-							 <li><i class="fas fa-check"></i> JBehave</li>
-                            <li><i class="fas fa-check"></i> Mocha</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h4><i class="fas fa-cogs"></i> RPA & Process Automation</h4>
-                        <ul>
-                            <li><i class="fas fa-check"></i> UI Path</li>
-                            <li><i class="fas fa-check"></i> Blue Prism</li>
-                            <li><i class="fas fa-check"></i> Automation Anywhere</li>
-                            <li><i class="fas fa-check"></i> IBM RPA</li>
+                            <li><i class="fas fa-check-circle"></i> UiPath, Blue Prism, Automation Anywhere</li>
+                            <li><i class="fas fa-check-circle"></i> SQL, PostgreSQL, MongoDB, NoSQL</li>
+                            <li><i class="fas fa-check-circle"></i> Python, JavaScript, Java, C#, VBScript</li>
+                            <li><i class="fas fa-check-circle"></i> Salesforce, SAP, Oracle E-Business Suite</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
+        <section id="blog">
+            <div class="blog-header">
+                <h2><i class="fas fa-newspaper"></i> Blog Posts</h2>
+                <button class="create-blog-button" id="openCreateBlog">
+                    <i class="fas fa-plus-circle"></i> Create New Blog
+                </button>
+            </div>
+            <div id="create-blog-section">
+                <h3>Create New Blog Post</h3>
+                <form class="create-blog-form">
+                    <div class="form-group">
+                        <label for="blogTitle">Title</label>
+                        <input type="text" id="blogTitle" name="blogTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="blogDate">Date</label>
+                        <input type="text" id="blogDate" name="blogDate" value="January 1, 2024" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="blogImage">Image URL</label>
+                        <input type="text" id="blogImage" name="blogImage" value="https://via.placeholder.com/600x400" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="blogContent">Content</label>
+                        <textarea id="blogContent" name="blogContent" required>This is the content of the blog post. It can be a long description about a technical topic, a personal story, or a professional insight. The goal is to provide valuable information to the reader. You can use this section to write about your experiences, lessons learned, or new technologies you've explored. The more detailed the content, the more engaging it will be.</textarea>
+                    </div>
+                    <button type="submit">Submit Blog Post</button>
+                </form>
+                <div class="blog-data-output">
+                    <h4>Generated Blog Post Data</h4>
+                    <textarea id="blogOutput" readonly></textarea>
+                    <button class="copy-button" id="copyOutput">Copy to Clipboard</button>
+                </div>
+            </div>
+            <div class="blog-grid" id="blog-grid">
+                <div class="blog-post-card" data-title="The Future of QA: AI and Automation" data-date="Jan 15, 2024" data-author="Harish Kumar M" data-image="https://images.unsplash.com/photo-1518770660439-4630574249a5?q=80&w=2070&auto=format&fit=crop" data-content="<h3>Introduction</h3><p>The landscape of Quality Assurance (QA) is undergoing a profound transformation, moving beyond traditional manual and script-based testing to a new paradigm powered by Artificial Intelligence (AI). This shift, often called the &quot;quantum leap of quality engineering,&quot; is not just about adopting new tools; it's about fundamentally rethinking how we ensure software quality, speed, and resilience in a hyper-connected, data-driven world. As QA leaders and engineers, our role is evolving from defect finders to architects of intelligent, self-healing quality ecosystems. This article explores the key drivers of this change, the practical applications of AI in QA, and the skills needed to thrive in this new era.</p><h3>AI-Powered Test Case Generation</h3><p>AI can automatically generate test cases from requirements documents, user stories, and application logs. This not only saves immense time but also ensures comprehensive coverage by identifying edge cases and user flows that human testers might miss. This capability is particularly useful for large and complex applications where manual test case creation can be a bottleneck.</p><h3>Predictive Analytics for Defect Prevention</h3><p>Machine learning models can analyze historical data, code changes, and user behavior to predict where defects are most likely to occur. This allows teams to prioritize testing efforts, focus on high-risk areas, and even prevent bugs from being introduced in the first place. AI-driven analytics provide a panoramic view of quality health, moving beyond simple pass/fail metrics to actionable insights on code stability, performance trends, and user sentiment.</p><h3>Challenges and Opportunities</h3><p>While the promise of AI in QA is immense, there are challenges. These include the need for high-quality training data, the complexity of integrating AI tools into existing workflows, and the upskilling of QA professionals. However, the opportunities for increased efficiency, improved quality, and faster time-to-market far outweigh these challenges. AI empowers QA teams to be more strategic and proactive.</p><h3>Conclusion</h3><p>The integration of AI and machine learning is revolutionizing the Quality Assurance landscape. By embracing these technologies, QA professionals can move beyond traditional testing methods and become key drivers of digital transformation. The future of QA is intelligent, automated, and deeply integrated into the entire development lifecycle, leading to superior software products.</p>">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4630574249a5?q=80&w=2070&auto=format&fit=crop" alt="AI and Automation">
+                    <div class="blog-post-content">
+                        <h3>The Future of QA: AI and Automation</h3>
+                        <div class="meta">
+                            <i class="fas fa-calendar-alt"></i> Jan 15, 2024
+                            <i class="fas fa-user"></i> Harish Kumar M
+                        </div>
+                        <p>Exploring how AI and machine learning are transforming the QA landscape, from intelligent test generation to predictive analytics.</p>
+                        <div class="blog-post-actions">
+                            <button class="action-button read-more">Read More</button>
+                            <button class="action-button edit-button"><i class="fas fa-edit"></i></button>
+                            <button class="action-button delete-button"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-post-card" data-title="Driving DevSecOps: A QA Perspective" data-date="Feb 20, 2024" data-author="Harish Kumar M" data-image="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" data-content="<h3>Introduction</h3><p>DevSecOps is no longer a buzzword but a necessity in modern software development. It emphasizes integrating security practices throughout the entire development lifecycle, from initial design to deployment and operations. This article discusses the critical role of Quality Assurance (QA) in a DevSecOps environment, highlighting how QA can act as a crucial enabler for secure and high-quality software delivery.</p><h3>QA's Role in DevSecOps</h3><p>Traditionally, security testing was often an afterthought, performed late in the development cycle. In a DevSecOps model, QA teams play a proactive role by embedding security checks and tests at every stage. This 'shift-left' approach to security ensures that vulnerabilities are identified and remediated early, reducing the cost and effort of fixing them later. QA engineers become security champions, advocating for secure coding practices and integrating security validation into their test strategies.</p><h3>Integrating Security into CI/CD</h3><p>A core tenet of DevSecOps is the automation of security testing within the Continuous Integration/Continuous Delivery (CI/CD) pipeline. QA teams can implement automated security scans, static application security testing (SAST), dynamic application security testing (DAST), and software composition analysis (SCA) tools. These tools run automatically with every code commit, providing immediate feedback on security vulnerabilities and ensuring that only secure code progresses through the pipeline.</p><h3>Best Practices for Shift-Left Security</h3><ul><li><strong>Threat Modeling:</strong> Collaborate with development and security teams to identify potential threats early in the design phase.</li><li><strong>Secure Code Reviews:</strong> Integrate security considerations into peer code reviews.</li><li><strong>Automated Security Tests:</strong> Incorporate SAST, DAST, and SCA tools into the CI/CD pipeline.</li><li><strong>Security Training:</strong> Provide continuous security awareness training for all team members.</li><li><strong>Vulnerability Management:</strong> Establish clear processes for reporting, tracking, and remediating security vulnerabilities.</li></ul><h3>Conclusion</h3><p>Integrating security and quality into the CI/CD pipeline is essential for a robust and resilient software delivery process. QA professionals are uniquely positioned to drive this integration, ensuring that security is not just a feature but an inherent part of the software's quality. By embracing DevSecOps principles, QA teams can significantly strengthen the overall security posture of applications, contributing to a more secure and reliable digital landscape.</p>">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="DevSecOps">
+                    <div class="blog-post-content">
+                        <h3>Driving DevSecOps: A QA Perspective</h3>
+                        <div class="meta">
+                            <i class="fas fa-calendar-alt"></i> Feb 20, 2024
+                            <i class="fas fa-user"></i> Harish Kumar M
+                        </div>
+                        <p>Integrating security and quality into the CI/CD pipeline for a robust and resilient software delivery process.</p>
+                        <div class="blog-post-actions">
+                            <button class="action-button read-more">Read More</button>
+                            <button class="action-button edit-button"><i class="fas fa-edit"></i></button>
+                            <button class="action-button delete-button"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-post-card" data-title="Mastering Test Automation Frameworks" data-date="Mar 10, 2024" data-author="Harish Kumar M" data-image="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop" data-content="<h3>Introduction</h3><p>Test automation frameworks are the backbone of efficient and scalable software testing. They provide a structured approach to test case design, execution, and reporting, helping teams deliver high-quality software faster. However, choosing the right framework and implementing it effectively can be a complex task. This post provides an in-depth comparison of popular frameworks, best use cases, and tips for designing a scalable and maintainable automation strategy.</p><h3>Choosing the Right Framework</h3><p>The selection of a test automation framework depends on various factors, including the application under test (web, mobile, API), the programming languages used by the development team, the team's expertise, and project requirements. There's no one-size-fits-all solution; a careful evaluation of needs versus framework capabilities is essential. Key considerations include ease of setup, community support, reporting features, and integration with CI/CD pipelines.</p><h3>Popular Frameworks: Selenium, Playwright, Cypress</h3><ul><li><strong>Selenium:</strong> A long-standing open-source framework for web application testing. It supports multiple browsers and programming languages (Java, Python, C#, etc.). Its vast community and ecosystem make it a popular choice for complex web automation.</li><li><strong>Playwright:</strong> Developed by Microsoft, Playwright offers cross-browser automation for modern web applications, including support for Chromium, Firefox, and WebKit. It provides powerful features like auto-wait, network interception, and parallel execution, making it highly efficient.</li><li><strong>Cypress:</strong> A JavaScript-based end-to-end testing framework built for the modern web. Cypress runs directly in the browser, offering faster execution and a more developer-friendly experience with real-time reloads and debugging. It excels in front-end testing and rapid feedback loops.</li></ul><h3>Designing Scalable Frameworks</h3><p>A well-designed test automation framework is scalable and maintainable. This involves adopting principles like modularity, reusability, and data-driven testing. Using design patterns (e.g., Page Object Model) helps organize test code and makes it easier to update when the application changes. Integrating the framework with version control systems and CI/CD tools ensures that automation is a continuous part of the development process.</p><h3>Conclusion</h3><p>Mastering test automation frameworks is crucial for a project's success in today's fast-paced development environment. By understanding the strengths and weaknesses of different frameworks and applying best practices in their design and implementation, teams can significantly improve their testing efficiency, reduce time-to-market, and deliver robust, high-quality software. Continuous learning and adaptation to new tools and techniques will be key to staying ahead in the evolving world of test automation.</p>">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop" alt="Test Automation">
+                    <div class="blog-post-content">
+                        <h3>Mastering Test Automation Frameworks</h3>
+                        <div class="meta">
+                            <i class="fas fa-calendar-alt"></i> Mar 10, 2024
+                            <i class="fas fa-user"></i> Harish Kumar M
+                        </div>
+                        <p>A comprehensive guide to selecting and designing the perfect test automation framework for your next project.</p>
+                        <div class="blog-post-actions">
+                            <button class="action-button read-more">Read More</button>
+                            <button class="action-button edit-button"><i class="fas fa-edit"></i></button>
+                            <button class="action-button delete-button"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-post-card" data-title="The Quantum Leap of Quality Engineering: Navigating the Future of AI-Driven QA" data-date="Aug 1, 2024" data-author="Harish Kumar M" data-image="https://images.unsplash.com/photo-1579546929518-92c9f45d1d36?q=80&w=2070&auto=format&fit=crop" data-content="<h3>Introduction</h3><p>The landscape of Quality Assurance (QA) is undergoing a profound transformation, moving beyond traditional manual and script-based testing to a new paradigm powered by Artificial Intelligence (AI). This shift, often called the &quot;quantum leap of quality engineering,&quot; is not just about adopting new tools; it's about fundamentally rethinking how we ensure software quality, speed, and resilience in a hyper-connected, data-driven world. As QA leaders and engineers, our role is evolving from defect finders to architects of intelligent, self-healing quality ecosystems. This article explores the key drivers of this change, the practical applications of AI in QA, and the skills needed to thrive in this new era.</p><h3>The Shift from Reactive to Predictive QA</h3><p>For decades, QA has been a largely reactive discipline. We've built test suites to find bugs after the code is written, creating a bottleneck in the software development lifecycle (SDLC). AI is changing this by enabling a shift to predictive QA. Machine learning models can now analyze historical data, code changes, and user behavior to predict where defects are most likely to occur. This allows teams to prioritize testing efforts, focus on high-risk areas, and even prevent bugs from being introduced in the first place. AI-driven analytics provide a panoramic view of quality health, moving beyond simple pass/fail metrics to actionable insights on code stability, performance trends, and user sentiment.</p><h3>AI's Role Across the Testing Spectrum</h3><p>AI is no longer a futuristic concept; it is already being integrated into every phase of the testing spectrum:</p><ul><li><strong>Intelligent Test Generation:</strong> AI can automatically generate test cases from requirements documents, user stories, and application logs. This not only saves immense time but also ensures comprehensive coverage by identifying edge cases and user flows that human testers might miss.</li><li><strong>Visual Regression Testing:</strong> AI-powered tools can detect subtle visual changes in an application's UI, distinguishing between intentional design updates and unintended bugs. This is a game-changer for front-end testing, where minor layout shifts can go unnoticed by traditional tools.</li><li><strong>Test Data Management:</strong> Generating realistic, compliant, and varied test data is a constant challenge. AI can create synthetic test data that mimics production data patterns, ensuring that test environments are robust and that privacy regulations are met.</li><li><strong>Self-Healing Automation:</strong> One of the most significant pain points in test automation is maintenance. Scripts often break due to minor UI changes. AI-driven frameworks can automatically locate updated locators and update test scripts, drastically reducing maintenance overhead and ensuring test stability.</li><li><strong>Performance and Load Testing:</strong> AI can analyze performance data to identify bottlenecks and predict system behavior under various load conditions. It can simulate realistic user traffic patterns and help engineers tune the application for peak performance, ensuring a seamless user experience.</li></ul><h3>Building the Future-Ready QA Team</h3><p>To lead this transformation, QA professionals must embrace a new set of skills. The future-ready QA engineer is not just a tester but a hybrid of a data analyst, an automation specialist, and a business strategist. Key skills to cultivate include: Programming Proficiency: A deep understanding of languages like Python, JavaScript, or Java is essential for building and integrating AI-driven tools. Data Science Fundamentals: The ability to understand and interpret data, particularly from quality metrics and predictive models, is crucial for making informed decisions. DevOps and Cloud Knowledge: Proficiency in CI/CD pipelines, containerization (Docker, Kubernetes), and cloud platforms (AWS, Azure) is vital for integrating AI-driven QA into modern development workflows. Domain Expertise: Understanding the business domain remains paramount. AI tools are powerful, but they need human guidance to ensure that testing efforts align with business objectives and deliver true value. </p><h3>Conclusion</h3><p>The AI-driven era of Quality Engineering is not about replacing human testers; it's about empowering them. By offloading repetitive and time-consuming tasks to AI, we can free up our teams to focus on strategic, high-value activities—exploratory testing, risk analysis, and innovation. The quantum leap of QA is an opportunity to elevate our profession, drive digital transformation, and ultimately deliver a higher standard of quality that fuels business growth. The future is here, and it's intelligent, predictive, and incredibly exciting.</p>">
+                    <img src="https://images.unsplash.com/photo-1579546929518-92c9f45d1d36?q=80&w=2070&auto=format&fit=crop" alt="The Future of AI-Driven QA">
+                    <div class="blog-post-content">
+                        <h3>The Quantum Leap of Quality Engineering: Navigating the Future of AI-Driven QA</h3>
+                        <div class="meta">
+                            <i class="fas fa-calendar-alt"></i> Aug 1, 2024
+                            <i class="fas fa-user"></i> Harish Kumar M
+                        </div>
+                        <p>The landscape of Quality Assurance (QA) is undergoing a profound transformation, moving beyond traditional manual and script-based testing to a new paradigm powered by Artificial Intelligence (AI). This shift, often called the "quantum leap of quality engineering," is not just about adopting new tools; it's about fundamentally rethinking how we ensure software quality, speed, and resilience...</p>
+                        <div class="blog-post-actions">
+                            <button class="action-button read-more">Read More</button>
+                            <button class="action-button edit-button"><i class="fas fa-edit"></i></button>
+                            <button class="action-button delete-button"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="blog-modal-overlay" id="blogModalOverlay">
+            <div class="blog-modal-content" id="blogModalContent">
+                <button class="blog-modal-close" id="blogModalClose">&times;</button>
+                <h3 id="modalTitle"></h3>
+                <div id="modalContent"></div>
+                <div class="meta" id="modalMeta"></div>
+            </div>
+        </div>
+        <section id="contact">
+            <h2><i class="fas fa-envelope-open-text"></i> Get in Touch</h2>
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </section>
     </div>
-
     <footer>
         <div class="container">
-            <h3>Connect With Me</h3>
-            <p>Open to executive consulting engagements, speaking opportunities, and leadership roles in Quality Engineering</p>
+            <a href="#" class="logo">
+                <i class="fas fa-user-shield"></i> Harish Kumar M
+            </a>
             <div class="social-links">
                 <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-github"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-medium"></i></a>
             </div>
-            <p>© <span id="current-year"></span> Harish Kumar M | QA Executive Leadership Profile</p>
+            <p>&copy; 2024 Harish Kumar M. All rights reserved.</p>
         </div>
     </footer>
-
+    <div class="message-box" id="messageBox"></div>
     <script>
-        // Set current year in footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinkElements = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            const headerNav = document.querySelector('.header-nav');
+            const blogGrid = document.getElementById('blog-grid');
+            const blogModalOverlay = document.getElementById('blogModalOverlay');
+            const blogModalClose = document.getElementById('blogModalClose');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMeta = document.getElementById('modalMeta');
+            const modalContent = document.getElementById('modalContent');
+            const createBlogButton = document.getElementById('openCreateBlog');
+            const createBlogSection = document.getElementById('create-blog-section');
+            const createBlogForm = document.querySelector('.create-blog-form');
+            const blogOutput = document.getElementById('blogOutput');
+            const copyButton = document.getElementById('copyOutput');
+            const messageBox = document.getElementById('messageBox');
+            const downloadCvBtn = document.getElementById('downloadCvBtn');
+            
+            let isEditing = false;
+            let currentEditCard = null;
 
-        // CV download functionality
-        document.getElementById('downloadCv').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Replace with the actual path to your client's CV file
-            const cvUrl = 'https://docs.google.com/uc?export=download&id=1fDBQb8Q-JwgjXe1VJB--F0IE0-Id5hMR&confirm=1';
-            
-            // Create a temporary anchor element to trigger download
-            const link = document.createElement('a');
-            link.href = cvUrl;
-            link.download = 'Harish_Kumar_QA_Executive_CV.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Optional: Track download event
-            console.log('CV download initiated');
-        });
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const isExpanded = navLinks.classList.contains('active');
+                menuToggle.setAttribute('aria-expanded', isExpanded);
+            });
 
-        // Animation on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = `fadeIn 0.8s ease-out forwards`;
+            // Close mobile menu when a link is clicked
+            navLinks.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Active nav link on scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - headerNav.offsetHeight - 50;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinkElements.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.href.includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Download CV functionality
+            // Directly link to the Google Drive URL with download attribute
+            if (downloadCvBtn) {
+                downloadCvBtn.addEventListener('click', (e) => {
+                    // No need for preventDefault if the href and download attribute are set correctly
+                    // The browser will handle the download directly.
+                    showMessage("Your CV download should start shortly!");
+                });
+            }
+
+            // Blog Post Modal and Action Buttons (Read, Edit, Delete)
+            blogGrid.addEventListener('click', (e) => {
+                const card = e.target.closest('.blog-post-card');
+                if (!card) return;
+
+                // Read More functionality
+                if (e.target.classList.contains('read-more')) {
+                    const title = card.getAttribute('data-title');
+                    const date = card.getAttribute('data-date');
+                    const author = card.getAttribute('data-author');
+                    const content = card.getAttribute('data-content');
+
+                    modalTitle.textContent = title;
+                    modalMeta.innerHTML = `<i class="fas fa-calendar-alt"></i> ${date} <i class="fas fa-user"></i> ${author}`;
+                    modalContent.innerHTML = content;
+                    blogModalOverlay.style.display = 'flex';
+                }
+
+                // Edit functionality
+                if (e.target.closest('.edit-button')) {
+                    isEditing = true;
+                    currentEditCard = card;
+                    
+                    document.getElementById('blogTitle').value = card.getAttribute('data-title');
+                    document.getElementById('blogDate').value = card.getAttribute('data-date');
+                    document.getElementById('blogImage').value = card.getAttribute('data-image');
+                    document.getElementById('blogContent').value = card.getAttribute('data-content');
+
+                    const submitButton = createBlogForm.querySelector('button[type="submit"]');
+                    submitButton.textContent = 'Update Blog Post';
+
+                    createBlogSection.style.display = 'block';
+                    createBlogSection.scrollIntoView({ behavior: 'smooth' });
+                }
+
+                // Delete functionality
+                if (e.target.closest('.delete-button')) {
+                    if (confirm('Are you sure you want to delete this blog post?')) {
+                        card.remove();
+                        showMessage("Blog post deleted successfully!");
+                    }
                 }
             });
-        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.highlight-card, .skill-category').forEach(card => {
-            observer.observe(card);
+            blogModalClose.addEventListener('click', () => {
+                blogModalOverlay.style.display = 'none';
+            });
+
+            blogModalOverlay.addEventListener('click', (e) => {
+                if (e.target === blogModalOverlay) {
+                    blogModalOverlay.style.display = 'none';
+                }
+            });
+
+            // Create New Blog Section
+            createBlogButton.addEventListener('click', () => {
+                isEditing = false;
+                currentEditCard = null;
+                createBlogForm.reset();
+                createBlogForm.querySelector('button[type="submit"]').textContent = 'Submit Blog Post';
+                createBlogSection.style.display = 'block';
+                createBlogSection.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            createBlogForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const title = document.getElementById('blogTitle').value;
+                const date = document.getElementById('blogDate').value;
+                const image = document.getElementById('blogImage').value;
+                const content = document.getElementById('blogContent').value;
+                const author = "Harish Kumar M"; // Keeping the author static
+
+                const newBlogData = {
+                    title,
+                    date,
+                    author,
+                    image,
+                    content
+                };
+
+                if (isEditing && currentEditCard) {
+                    // Update existing card
+                    currentEditCard.setAttribute('data-title', newBlogData.title);
+                    currentEditCard.setAttribute('data-date', newBlogData.date);
+                    currentEditCard.setAttribute('data-image', newBlogData.image);
+                    currentEditCard.setAttribute('data-content', newBlogData.content);
+                    
+                    currentEditCard.querySelector('img').src = newBlogData.image;
+                    currentEditCard.querySelector('img').alt = newBlogData.title;
+                    currentEditCard.querySelector('h3').textContent = newBlogData.title;
+                    currentEditCard.querySelector('.meta').innerHTML = `<i class="fas fa-calendar-alt"></i> ${newBlogData.date} <i class="fas fa-user"></i> ${newBlogData.author}`;
+                    currentEditCard.querySelector('p').textContent = newBlogData.content.substring(0, 100) + '...';
+
+                    showMessage("Blog post updated successfully!");
+
+                } else {
+                    // Create new card
+                    const newBlogCard = document.createElement('div');
+                    newBlogCard.className = 'blog-post-card';
+                    newBlogCard.setAttribute('data-title', newBlogData.title);
+                    newBlogCard.setAttribute('data-date', newBlogData.date);
+                    newBlogCard.setAttribute('data-author', newBlogData.author);
+                    newBlogCard.setAttribute('data-image', newBlogData.image);
+                    newBlogCard.setAttribute('data-content', newBlogData.content);
+                    
+                    newBlogCard.innerHTML = `
+                        <img src="${newBlogData.image}" alt="${newBlogData.title}">
+                        <div class="blog-post-content">
+                            <h3>${newBlogData.title}</h3>
+                            <div class="meta">
+                                <i class="fas fa-calendar-alt"></i> ${newBlogData.date}
+                                <i class="fas fa-user"></i> ${newBlogData.author}
+                            </div>
+                            <p>${newBlogData.content.substring(0, 100)}...</p>
+                            <div class="blog-post-actions">
+                                <button class="action-button read-more">Read More</button>
+                                <button class="action-button edit-button"><i class="fas fa-edit"></i></button>
+                                <button class="action-button delete-button"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    blogGrid.appendChild(newBlogCard);
+                    showMessage("New blog post created successfully!");
+                }
+                
+                createBlogForm.reset();
+                createBlogSection.style.display = 'none';
+
+                const formattedJson = JSON.stringify(newBlogData, null, 2);
+                blogOutput.value = formattedJson;
+            });
+
+            copyButton.addEventListener('click', () => {
+                blogOutput.select();
+                document.execCommand('copy');
+                showMessage("Copied to clipboard!");
+            });
+
+            // Message box function
+            function showMessage(message) {
+                messageBox.textContent = message;
+                messageBox.classList.add('show');
+                setTimeout(() => {
+                    messageBox.classList.remove('show');
+                }, 3000);
+            }
         });
     </script>
 </body>
